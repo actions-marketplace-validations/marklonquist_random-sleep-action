@@ -1,0 +1,21 @@
+name: 'Random Sleep'
+description: 'Sleep for a random number of seconds between a minimum and maximum.'
+author: 'Mark Lønquist'
+inputs:
+    minimum:
+        description: 'Minimum sleep time in seconds.'
+        required: false
+        default: '1'
+    maximum:
+        description: 'Maximum sleep time in seconds.'
+        required: false
+        default: '10'
+outputs:
+    wait_time:
+        description: 'The number of seconds actually slept.'
+runs:
+    using: 'node24'
+    main: 'index.js'
+branding:
+    icon: 'clock'
+    color: 'blue'

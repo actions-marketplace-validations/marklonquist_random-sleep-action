@@ -1,0 +1,30 @@
+name: Test
+
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    smoke:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Sleep with a custom range
+              id: sleep
+              uses: ./
+              with:
+                  minimum: 1
+                  maximum: 3
+
+            - name: Verify the output was set
+              run: |
+                  echo "wait_time=${{ steps.sleep.outputs.wait_time }}"
+                  test -n "${{ steps.sleep.outputs.wait_time }}"
+
+            - name: Sleep with defaults
+              uses: ./
